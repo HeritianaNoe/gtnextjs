@@ -1,0 +1,218 @@
+:root {
+  --paper: #f6f7f2;
+  --ink: #17231a;
+  --muted: #5d6b60;
+  --line: #d5dbd0;
+  --green: #007e3a;
+  --green-soft: #cfe8d7;
+  --red: #fc3d32;
+  --red-soft: #ffd9d6;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+.shell { max-width: 920px; margin: 0 auto; padding: 24px 16px 48px; }
+
+.head { display: flex; gap: 16px; align-items: center; margin-bottom: 20px; }
+.head h1 { margin: 0; font-size: clamp(1.8rem, 5vw, 2.6rem); line-height: 1.05; letter-spacing: -0.02em; }
+.head p { margin: 6px 0 0; color: var(--muted); max-width: 52ch; }
+
+/* sainam-pirenena malagasy */
+.flag {
+  flex: none;
+  width: 54px;
+  height: 36px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 1fr;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.flag i:nth-child(1) { grid-row: 1 / 3; background: #fff; }
+.flag i:nth-child(2) { background: var(--red); }
+.flag i:nth-child(3) { background: var(--green); }
+
+.play { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
+@media (min-width: 800px) {
+  .play { grid-template-columns: minmax(0, 580px) minmax(240px, 1fr); align-items: start; }
+  .words-panel { position: sticky; top: 24px; }
+}
+
+/* ---------- Cadre (panel) ---------- */
+.panel {
+  position: relative;
+  background: #fff;
+  border: 1.5px solid var(--ink);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+  background: #fbfcf9;
+}
+.panel-head h2 { margin: 0; font-size: 1.05rem; letter-spacing: -0.01em; }
+.panel-body { padding: 16px; }
+.panel-foot { padding: 14px 16px 16px; border-top: 1px solid var(--line); background: #fbfcf9; }
+
+.stats { display: flex; gap: 8px; flex-wrap: wrap; width: 100%; }
+.stat {
+  flex: 1 1 0;
+  min-width: 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 7px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+}
+.stat small { color: var(--muted); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; }
+.stat b { font-size: 1.1rem; font-variant-numeric: tabular-nums; }
+
+.badge {
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--green-soft);
+  color: #004d23;
+}
+
+/* ---------- Tabilao ---------- */
+.board-body { background: var(--paper); }
+
+.grid {
+  container-type: inline-size;
+  display: grid;
+  grid-template-columns: repeat(var(--n), 1fr);
+  width: 100%;
+  aspect-ratio: 1;
+  background: #fff;
+  border: 1.5px solid var(--ink);
+  border-radius: 10px;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  overflow: hidden;
+}
+
+.cell {
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  font-size: calc(55cqw / var(--n));
+  border: 0.5px solid #eef0ea;
+  cursor: pointer;
+  transition: background 0.08s;
+}
+.cell.sel { background: var(--red-soft); color: #8a0f08; }
+.cell.hit { background: var(--green-soft); color: #004d23; font-weight: 800; }
+
+/* ---------- Teny tadiavina ---------- */
+.words ul, .words-panel ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 8px;
+}
+.words-panel li {
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  font-weight: 600;
+  font-size: 0.92rem;
+  letter-spacing: 0.04em;
+}
+.words-panel li.done {
+  color: var(--green);
+  background: var(--green-soft);
+  border-color: transparent;
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+}
+
+.new, .win button {
+  font: inherit;
+  font-weight: 600;
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--green);
+  color: #fff;
+  cursor: pointer;
+}
+.new { width: 100%; }
+.new:hover, .win button:hover { filter: brightness(1.08); }
+.new:focus-visible, .win button:focus-visible { outline: 3px solid var(--red); outline-offset: 2px; }
+
+.win {
+  margin-top: 24px;
+  padding: 14px 18px;
+  border-left: 5px solid var(--green);
+  background: var(--green-soft);
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+  font-weight: 600;
+}
+
+.mute {
+  flex: none;
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+}
+.mute:hover { background: var(--green-soft); }
+.mute:focus-visible { outline: 3px solid var(--red); outline-offset: 2px; }
+
+/* ---------- Footer ---------- */
+.foot {
+  margin-top: 40px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 16px;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.foot .copy { flex: 1 1 auto; text-align: center; order: 0; }
+.foot a {
+  color: var(--green);
+  font-weight: 700;
+  text-decoration: none;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+}
+.foot a:hover { background: var(--green-soft); }
+.foot a:focus-visible { outline: 3px solid var(--red); outline-offset: 2px; }
+@media (max-width: 560px) {
+  .foot .copy { order: 1; flex-basis: 100%; }
+}

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect x="8" y="8" width="496" height="496" rx="112" fill="#f6f7f2" stroke="#17231a" stroke-width="16"/>
+  <!-- litera hafa (tsy hita) -->
+  <g fill="#cfe8d7">
+    <circle cx="128" cy="124" r="18"/><circle cx="256" cy="124" r="18"/><circle cx="384" cy="124" r="18"/>
+    <circle cx="128" cy="388" r="18"/><circle cx="256" cy="388" r="18"/>
+  </g>
+  <!-- teny hita -->
+  <rect x="52" y="184" width="408" height="144" rx="40" fill="#007e3a"/>
+  <g fill="none" stroke="#fff" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M92 220H164M128 220V292"/>
+    <path d="M256 220V292M232 220H280M232 292H280"/>
+    <path d="M348 292L384 220L420 292M362 266H406"/>
+  </g>
+  <!-- loupe -->
+  <circle cx="372" cy="384" r="42" fill="#fff" fill-opacity=".85" stroke="#fc3d32" stroke-width="22"/>
+  <path d="M404 418L446 460" stroke="#fc3d32" stroke-width="28" stroke-linecap="round"/>
+</svg>

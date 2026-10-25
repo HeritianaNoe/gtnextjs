@@ -1,0 +1,52 @@
+# dépendances
+node_modules/
+.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# build Next.js
+.next/
+out/
+build/
+dist/
+*.tsbuildinfo
+next-env.d.ts
+
+# tests / cache
+coverage/
+.eslintcache
+.turbo/
+.cache/
+
+# Vercel
+.vercel/
+
+# fichiers secrets (tsy tokony alefa any GitHub)
+.env
+.env.*
+!.env.example
+*.pem
+
+# logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# rakitry ny rafitra
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# éditeur
+.idea/
+.vscode/
+*.swp
+
+# archives (ohatra: zip alefa any @ chat)
+*.zip
